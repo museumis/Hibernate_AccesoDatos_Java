@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 25-feb-2018 13:38:06 by Hibernate Tools 5.2.8.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ventas" dynamic-insert="false" dynamic-update="false" mutable="true" name="jdbc.Productos" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="productos">
+        <id name="ref" type="int">
+            <column name="REF"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="nombre" optimistic-lock="true" type="string" unique="false">
+            <column length="50" name="NOMBRE" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="precio" optimistic-lock="true" type="big_decimal" unique="false">
+            <column name="PRECIO" precision="6"/>
+        </property>
+        <property generated="never" lazy="false" name="existencias" optimistic-lock="true" type="java.lang.Integer" unique="false">
+            <column name="EXISTENCIAS"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="ventases" optimistic-lock="true" sort="unsorted" table="ventas">
+            <key on-delete="noaction">
+                <column name="IDPRODUCTO"/>
+            </key>
+            <one-to-many class="jdbc.Ventas" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>
